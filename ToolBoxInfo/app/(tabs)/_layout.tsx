@@ -13,7 +13,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#004D40",
+        tabBarActiveTintColor: "#5D3FD3",
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "#fafafa",
@@ -28,7 +28,7 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={focused ? "home-variant" : "home-variant-outline"}
+              name={"home-variant-outline"}
               type="material-community"
               color={color}
               size={32}
@@ -42,7 +42,7 @@ export default function TabLayout() {
           title: "Notifications",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={focused ? "bell" : "bell-outline"}
+              name={"bell-outline"}
               type="material-community"
               color={color}
               size={32}
@@ -51,40 +51,26 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="addReport"
+        name="hourly"
         options={{
-          title: "Add",
+          title: "Hourly",
           tabBarIcon: ({ color, focused }) => (
-            <View
-              style={{
-                height: 80,
-                width: 80,
-                backgroundColor: "#004D40",
-                borderRadius: 40,
-                position: "absolute",
-                display:'flex',
-                alignItems:'center',
-                justifyContent:'center',
-                bottom:1
-              }}
-            >
-              <Icon
-                name={"plus"}
-                type="material-community"
-                color={"white"}
-                size={40}
-              />
-            </View>
+            <Icon
+              name={"weather-cloudy-clock"}
+              type="material-community"
+              color={color}
+              size={32}
+            />
           ),
         }}
       />
-      <Tabs.Screen
-        name="schedule"
+       <Tabs.Screen
+        name="daily"
         options={{
-          title: "Schedule",
+          title: "Daily",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={focused ? "book-clock" : "book-clock-outline"}
+              name={"weather-partly-snowy-rainy"}
               type="material-community"
               color={color}
               size={32}
@@ -98,7 +84,7 @@ export default function TabLayout() {
           title: "Profile",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={focused ? "account-cog" : "account-cog-outline"}
+              name={"account-cog-outline"}
               type="material-community"
               color={color}
               size={32}

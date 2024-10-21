@@ -30,7 +30,7 @@ export default index;
 
 const styles = StyleSheet.create({
   MainIndex: {
-    backgroundColor: "#004D40",
+    backgroundColor: "#5D3FD3",
     height: height,
     display: "flex",
     alignItems: "center",
