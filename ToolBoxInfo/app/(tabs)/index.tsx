@@ -11,7 +11,7 @@ const height = Dimensions.get("screen").height;
 
 const index = () => {
   return (
-    <ImageBackground style={styles.indexTab} source={require('@/assets/images/sky.png')}>
+    <ImageBackground style={styles.indexTab} source={require('@/assets/images/sky.png')} >
       <Text>index</Text>
     </ImageBackground>
   );
@@ -22,6 +22,6 @@ export default index;
 const styles = StyleSheet.create({
   indexTab: {
     height: height,
-    backgroundColor: "white",
+    // backgroundColor: "white",
   },
 });

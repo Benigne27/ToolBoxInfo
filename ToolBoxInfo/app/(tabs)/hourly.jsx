@@ -1,51 +1,41 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import {fetchWeatherApi} from 'openmeteo'
+import { ActivityIndicator, Dimensions, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { fetchWeatherApi } from "openmeteo";
+const height= Dimensions.get('screen').height
+
+import { useAppContext } from "../Context/ContextProv";
+
 
 const hourly = () => {
-    
-    const latitude=-1.950221
-    const longitude=30.157104
+  const {humidityData}=useAppContext()
 
-    const url=`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=relative_humidity_2m`
 
-    const fetchWeather= async ()=>{
-        fetch(url)
-        .then((response)=>response.text())
-        .then((response)=>{
-            console.log(response)
-        })
-        .catch((error)=> console.error(error))
-    }
-    fetchWeather()
-
-    // const params={
-    //     'latitude':-1.950221,
-    //     'longitude':30.157104,
-    //     'hourly': ['temperature_2m', 'relative_humidity_2m']
-    // }
-
-    // const url='https://api.open-meteo.com/v1/forecast'
-    // const responses= fetchWeatherApi(url, params)
-    // console.log(responses)
-
-    // const range=(start, stop, step)=> 
-    //     Array.from({length:(start-stop)/step},(_,i)=>start+i*step)
-
-    // const response= responses[0]
-    // console.log(response)
-    // const utcOffsetSeconds= response.utcOffsetSeconds()
-    // const timezone= response.timezone()
-    // const timezoneAbbreviation= response.timezoneAbbreviation()
   return (
-   
-    <View>
-        <SafeAreaView></SafeAreaView>
-      <Text>hourly</Text>
+    <View style={styles. hourlyTab}>
+      <SafeAreaView></SafeAreaView>
+      <StatusBar barStyle={'dark-content'}/>
+      <ScrollView >
+      <Text>Hourly Humidity:</Text>
+       {humidityData.length > 0 ? (
+        humidityData.map((entry, index) => (
+          <Text key={index}>
+           Date:{entry.date},{'\n'} Time: {entry.time},{'\n'} Humidity: {entry.humidity}%
+          </Text>
+        ))
+      ) : (
+        <Text>No data available</Text>
+      )}
+      </ScrollView>
     </View>
-  )
-}
+  );
+};
 
-export default hourly
+export default hourly;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  hourlyTab:{
+    height:height,
+    backgroundColor:'white',
+    paddingHorizontal:20
+  }
+});

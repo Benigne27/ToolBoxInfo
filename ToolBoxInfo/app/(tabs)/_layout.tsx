@@ -65,12 +65,12 @@ export default function TabLayout() {
         }}
       />
        <Tabs.Screen
-        name="daily"
+        name="chart"
         options={{
-          title: "Daily",
+          title: "Chart",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={"weather-partly-snowy-rainy"}
+              name={"chart-areaspline"}
               type="material-community"
               color={color}
               size={32}
