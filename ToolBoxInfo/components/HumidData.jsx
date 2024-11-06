@@ -11,7 +11,7 @@ export default function HumidData({
   temperature,
   time,
   date,
-  emoji,
+  rain,
 }) {
   const { humidityData } = useAppContext();
   const todayTime = new Date().toLocaleString();
@@ -31,6 +31,7 @@ export default function HumidData({
           <Text style={styles.Emoji2}>⛅</Text>
             <Text style={styles.DateTime}>{humidity}%</Text>
             <Text style={styles.DateTime}>{temperature}°C</Text>
+            
           </View>
         </View>
         <View style={{ height: 20 }}></View>
@@ -38,7 +39,7 @@ export default function HumidData({
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {todayHumData
             ? todayHumData.map((data, index) => (
-                <View style={{ display: "flex", flexDirection: "row" }}>
+                <View key={index} style={{ display: "flex", flexDirection: "row" }}>
                   <View
                     key={index}
                     style={{ display: "flex", flexDirection: "column", gap: 5 }}
@@ -47,6 +48,7 @@ export default function HumidData({
                     <Text style={styles.Emoji}>⛅</Text>
                     <Text style={styles.CondData}>{data.humidity}%</Text>
                     <Text style={styles.CondData}>{data.temperature}°C</Text>
+           
                   </View>
                   <View style={{ width: 30 }}></View>
                 </View>

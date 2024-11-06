@@ -21,7 +21,7 @@ export default function ContextProv({ children }) {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${theLatitude}&longitude=${theLongitude}&hourly=temperature_2m&hourly=relative_humidity_2m`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${theLatitude}&longitude=${theLongitude}&hourly=temperature_2m&hourly=relative_humidity_2m&hourly=rain`;
         const response = await fetch(url);
         const data = await response.json();
         setApiResponses(data);
@@ -43,12 +43,13 @@ export default function ContextProv({ children }) {
   }
   const hourly = apiResponses?.hourly;
   const humidityData =
-    hourly?.relative_humidity_2m  && hourly?.temperature_2m && hourly?.time
+    hourly?.relative_humidity_2m  && hourly?.temperature_2m && hourly?.rain && hourly?.time
       ? hourly.relative_humidity_2m.map((humidity, index) => ({
           date: hourly.time[index].split("T")[0],
           time: hourly.time[index].split("T")[1],
           humidity,
-          temperature: hourly.temperature_2m[index]
+          temperature: hourly.temperature_2m[index],
+          rain: hourly.rain[index]
           
         }))
       : [];

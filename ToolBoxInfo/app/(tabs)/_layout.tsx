@@ -17,9 +17,20 @@ export default function TabLayout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "#fafafa",
-          height: 80,
-          position: "relative",
+          // position: "absolute",
+          // width:350,
+          // alignSelf:'center',
+          // bottom:40,
+          // borderRadius:40,
+          // display:'flex',
+          // alignItems:'center',
+          // justifyContent:'center',
+          // paddingTop:18,
+          // left:'auto',
+          // right:'auto',
+          
         },
+        
       }}
     >
       <Tabs.Screen
@@ -64,27 +75,14 @@ export default function TabLayout() {
           ),
         }}
       />
-       <Tabs.Screen
-        name="chart"
-        options={{
-          title: "Chart",
-          tabBarIcon: ({ color, focused }) => (
-            <Icon
-              name={"chart-areaspline"}
-              type="material-community"
-              color={color}
-              size={32}
-            />
-          ),
-        }}
-      />
+     
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={"account-cog-outline"}
+              name={"cog-outline"}
               type="material-community"
               color={color}
               size={32}
