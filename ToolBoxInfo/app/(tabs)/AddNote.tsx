@@ -1,31 +1,42 @@
-import { StyleSheet, Text, View, Platform, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  TextInput,
+  Dimensions,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "react-native-elements";
+import { StatusBar } from "react-native";
 
-async function sendPushNotification(expoPushToken: string) {
-  const [notee, setNotee] = useState("");
-  const message = {
-    to: expoPushToken,
-    sound: "default",
-    title: "Benigne",
-    body: { notee },
-    // data: { someData: 'goes here' },
-  };
+const height = Dimensions.get("screen").height;
+const width = Dimensions.get("screen").width;
 
-  await fetch("https://exp.host/--/api/v2/push/send", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Accept-encoding": "gzip, deflate",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(message),
-  });
-}
+// async function sendPushNotification(expoPushToken: string) {
+//   const [notee, setNotee] = useState("");
+//   const message = {
+//     to: expoPushToken,
+//     sound: "default",
+//     title: "Benigne",
+//     body: { notee },
+//     // data: { someData: 'goes here' },
+//   };
+
+//   await fetch("https://exp.host/--/api/v2/push/send", {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Accept-encoding": "gzip, deflate",
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(message),
+//   });
+// }
 
 function handleRegistrationError(errorMessage: string) {
   alert(errorMessage);
@@ -79,19 +90,17 @@ async function registerForPushNotificationsAsync() {
 }
 
 export default function AddNote() {
-  const [expoPushToken, setExpoPushToken] = useState('');
-  useEffect(()=>{
-      registerForPushNotificationsAsync()
-      .then(token => setExpoPushToken(token ?? ''))
+  const [expoPushToken, setExpoPushToken] = useState("");
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+      .then((token) => setExpoPushToken(token ?? ""))
       .catch((error: any) => setExpoPushToken(`${error}`));
-  })
+  });
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const handleSendNotification = async () => {
-   
-
     const message = {
       to: expoPushToken,
       sound: "default",
@@ -117,34 +126,42 @@ export default function AddNote() {
   };
 
   return (
-    <View>
+    <View style={{ display: "flex", alignItems: "center", height:height, width:width }}>
+        <StatusBar barStyle={'dark-content'}/>
       <SafeAreaView></SafeAreaView>
       <TextInput
         value={title}
         onChangeText={setTitle}
+        placeholder="Title"
         style={{
           borderColor: "black",
-          borderWidth: 2,
-          width: 300,
+          borderWidth: 1,
+          width: 350,
           height: 50,
+          borderRadius: 10,
+          paddingVertical:5,
+          paddingHorizontal:20
+        }}
+      />
+      <View style={{height:5}}></View>
+      <TextInput
+        value={body}
+        onChangeText={setBody}
+        placeholder="Body"
+        style={{
+          borderColor: "black",
+          borderWidth: 1,
+          width: 350,
+          paddingBottom: 200,
+          paddingTop:20,
+          paddingHorizontal:20,
           borderRadius: 10,
         }}
       />
-      <TextInput value={body} onChangeText={setBody}  style={{
-          borderColor: "black",
-          borderWidth: 2,
-          width: 300,
-          height: 200,
-          borderRadius: 10,
-        }}/>
-
+      <View style={{height:30}}></View>
       <Button
         title="Send Notification"
         style={{ width: 200, alignSelf: "center" }}
-        // onPress={async () => {
-        //   await sendPushNotification(expoPushToken);
-
-        // }}
         onPress={handleSendNotification}
       />
     </View>
