@@ -17,19 +17,7 @@ export default function TabLayout() {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: "#fafafa",
-          // position: "absolute",
-          // width:350,
-          // alignSelf:'center',
-          // bottom:40,
-          // borderRadius:40,
-          // display:'flex',
-          // alignItems:'center',
-          // justifyContent:'center',
-          // paddingTop:18,
-          // left:'auto',
-          // right:'auto',
-          
-        },
+        }
         
       }}
     >
@@ -54,6 +42,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Icon
               name={"bell-outline"}
+              type="material-community"
+              color={color}
+              size={32}
+            />
+          ),
+        }}
+      />
+       <Tabs.Screen
+        name="AddNote"
+        options={{
+          title: "Add",
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              name={"plus"}
               type="material-community"
               color={color}
               size={32}

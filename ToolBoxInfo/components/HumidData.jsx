@@ -1,8 +1,7 @@
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useAppContext } from "../app/Context/ContextProv";
-// import {Emoji, EmojiPopper} from 'react-native-fiesta'
-// import { useFont } from '@shopify/react-native-skia'
+
 
 const width = Dimensions.get("screen").width;
 const height = Dimensions.get("screen").height;

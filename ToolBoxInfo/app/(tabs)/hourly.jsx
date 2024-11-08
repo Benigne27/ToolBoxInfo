@@ -32,7 +32,7 @@ const hourly = () => {
     .filter((entry) => entry.date === today)
     .filter((entry, index) => {
       const hour = parseInt(entry.time.split(":")[0], 10);
-      return hour % 2 === 0; // Only keep entries at 2-hour intervals
+      return hour % 2 === 0; 
     });
 
   const chartData = {

@@ -1,6 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { StyleSheet, Text, View, Platform } from "react-native";
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
 import { ActivityIndicator } from "react-native";
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
 export const AppContext = createContext(undefined);
 
@@ -53,14 +56,21 @@ export default function ContextProv({ children }) {
           
         }))
       : [];
-      // const tempData=
-      // hourly?.temperature_2m && hourly?.time
-      // ?hourly.temperature_2m.map((temperature, index)=>({
-      //   date: hourly.time[index].split("T")[0],
-      //   time: hourly.time[index].split("T")[1],
-      //   temperature,
-      // }))
-      // :[]
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <AppContext.Provider
