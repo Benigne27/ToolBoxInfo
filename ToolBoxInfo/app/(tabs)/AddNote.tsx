@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Platform,
-  TextInput,
+  // TextInput,
   Dimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -13,30 +13,10 @@ import Constants from "expo-constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "react-native-elements";
 import { StatusBar } from "react-native";
+import {TextInput} from 'react-native-paper'
 
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
-
-// async function sendPushNotification(expoPushToken: string) {
-//   const [notee, setNotee] = useState("");
-//   const message = {
-//     to: expoPushToken,
-//     sound: "default",
-//     title: "Benigne",
-//     body: { notee },
-//     // data: { someData: 'goes here' },
-//   };
-
-//   await fetch("https://exp.host/--/api/v2/push/send", {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Accept-encoding": "gzip, deflate",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(message),
-//   });
-// }
 
 function handleRegistrationError(errorMessage: string) {
   alert(errorMessage);
@@ -140,8 +120,10 @@ export default function AddNote() {
           height: 50,
           borderRadius: 10,
           paddingVertical:5,
-          paddingHorizontal:20
+          paddingHorizontal:20,
+          backgroundColor:'transparent'
         }}
+        
       />
       <View style={{height:5}}></View>
       <TextInput
@@ -156,7 +138,9 @@ export default function AddNote() {
           paddingTop:20,
           paddingHorizontal:20,
           borderRadius: 10,
+          backgroundColor:'transparent'
         }}
+        right={<TextInput.Icon icon={'send'} size={25} color={'white'} style={{  top:220, backgroundColor:'#5D3FD3'}}/>}
       />
       <View style={{height:30}}></View>
       <Button
@@ -168,4 +152,3 @@ export default function AddNote() {
   );
 }
 
-const styles = StyleSheet.create({});
