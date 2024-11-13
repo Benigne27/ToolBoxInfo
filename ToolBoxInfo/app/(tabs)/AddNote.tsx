@@ -3,17 +3,18 @@ import {
   Text,
   View,
   Platform,
-  // TextInput,
   Dimensions,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button } from "react-native-elements";
 import { StatusBar } from "react-native";
-import {TextInput} from 'react-native-paper'
+import { TextInput } from "react-native-paper";
 
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
@@ -106,12 +107,21 @@ export default function AddNote() {
   };
 
   return (
-    <View style={{ display: "flex", alignItems: "center", height:height, width:width }}>
-        <StatusBar barStyle={'dark-content'}/>
+    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+    <View
+      style={{
+        display: "flex",
+        alignItems: "center",
+        height: height,
+        width: width,
+      }}
+    >
+      <StatusBar barStyle={"dark-content"} />
       <SafeAreaView></SafeAreaView>
       <TextInput
         value={title}
         onChangeText={setTitle}
+        multiline
         placeholder="Title"
         style={{
           borderColor: "black",
@@ -119,36 +129,55 @@ export default function AddNote() {
           width: 350,
           height: 50,
           borderRadius: 10,
-          paddingVertical:5,
-          paddingHorizontal:20,
-          backgroundColor:'transparent'
+          paddingVertical: 5,
+          paddingHorizontal: 20,
+          backgroundColor: "transparent",
         }}
-        
+        theme={{roundness:10, colors:{primary:'#5D3FD3'}}}
+        underlineColor="transparent"
+        underlineStyle={{backgroundColor:'transparent'
+        }}
       />
-      <View style={{height:5}}></View>
+      <View style={{ height: 5 }}></View>
       <TextInput
         value={body}
         onChangeText={setBody}
+        multiline
         placeholder="Body"
         style={{
           borderColor: "black",
           borderWidth: 1,
           width: 350,
-          paddingBottom: 200,
-          paddingTop:20,
-          paddingHorizontal:20,
+          paddingBottom: 100,
+          paddingHorizontal: 20,
           borderRadius: 10,
-          backgroundColor:'transparent'
+          backgroundColor: "transparent",
         }}
-        right={<TextInput.Icon icon={'send'} size={25} color={'white'} style={{  top:220, backgroundColor:'#5D3FD3'}}/>}
+        theme={{roundness:10, colors:{primary:'#5D3FD3'}}}
+        underlineColor="transparent"
+        underlineStyle={{backgroundColor:'transparent'
+        }}
       />
-      <View style={{height:30}}></View>
-      <Button
-        title="Send Notification"
-        style={{ width: 200, alignSelf: "center" }}
+      <View style={{ height: 30 }}></View>
+      <TouchableOpacity
+        style={{
+          width: 200,
+          alignSelf: "center",
+          backgroundColor: "#5D3FD3",
+          padding: 15,
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'center',
+          borderRadius:5
+        }}
         onPress={handleSendNotification}
-      />
+      >
+        <Text style={{ color: "white", fontSize: 17, fontWeight: "bold" }}>
+          Send Notification
+        </Text>
+      </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 }
-
+const styles = StyleSheet.create({});
