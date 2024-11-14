@@ -87,7 +87,11 @@ export default function AddNote() {
       sound: "default",
       title: title || "No Title",
       body: body || "No Body",
-      data: { customData: "Additional data if needed" },
+
+      data: {
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+      },
     };
 
     try {
@@ -107,76 +111,74 @@ export default function AddNote() {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-    <View
-      style={{
-        display: "flex",
-        alignItems: "center",
-        height: height,
-        width: width,
-      }}
-    >
-      <StatusBar barStyle={"dark-content"} />
-      <SafeAreaView></SafeAreaView>
-      <TextInput
-        value={title}
-        onChangeText={setTitle}
-        multiline
-        placeholder="Title"
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View
         style={{
-          borderColor: "black",
-          borderWidth: 1,
-          width: 350,
-          height: 50,
-          borderRadius: 10,
-          paddingVertical: 5,
-          paddingHorizontal: 20,
-          backgroundColor: "transparent",
+          display: "flex",
+          alignItems: "center",
+          height: height,
+          width: width,
         }}
-        theme={{roundness:10, colors:{primary:'#5D3FD3'}}}
-        underlineColor="transparent"
-        underlineStyle={{backgroundColor:'transparent'
-        }}
-      />
-      <View style={{ height: 5 }}></View>
-      <TextInput
-        value={body}
-        onChangeText={setBody}
-        multiline
-        placeholder="Body"
-        style={{
-          borderColor: "black",
-          borderWidth: 1,
-          width: 350,
-          paddingBottom: 100,
-          paddingHorizontal: 20,
-          borderRadius: 10,
-          backgroundColor: "transparent",
-        }}
-        theme={{roundness:10, colors:{primary:'#5D3FD3'}}}
-        underlineColor="transparent"
-        underlineStyle={{backgroundColor:'transparent'
-        }}
-      />
-      <View style={{ height: 30 }}></View>
-      <TouchableOpacity
-        style={{
-          width: 200,
-          alignSelf: "center",
-          backgroundColor: "#5D3FD3",
-          padding: 15,
-          display:'flex',
-          alignItems:'center',
-          justifyContent:'center',
-          borderRadius:5
-        }}
-        onPress={handleSendNotification}
       >
-        <Text style={{ color: "white", fontSize: 17, fontWeight: "bold" }}>
-          Send Notification
-        </Text>
-      </TouchableOpacity>
-    </View>
+        <StatusBar barStyle={"dark-content"} />
+        <SafeAreaView></SafeAreaView>
+        <TextInput
+          value={title}
+          onChangeText={setTitle}
+          multiline
+          placeholder="Title"
+          style={{
+            borderColor: "black",
+            borderWidth: 1,
+            width: 350,
+            height: 50,
+            borderRadius: 10,
+            paddingVertical: 5,
+            paddingHorizontal: 20,
+            backgroundColor: "transparent",
+          }}
+          theme={{ roundness: 10, colors: { primary: "#5D3FD3" } }}
+          underlineColor="transparent"
+          underlineStyle={{ backgroundColor: "transparent" }}
+        />
+        <View style={{ height: 5 }}></View>
+        <TextInput
+          value={body}
+          onChangeText={setBody}
+          multiline
+          placeholder="Body"
+          style={{
+            borderColor: "black",
+            borderWidth: 1,
+            width: 350,
+            paddingBottom: 100,
+            paddingHorizontal: 20,
+            borderRadius: 10,
+            backgroundColor: "transparent",
+          }}
+          theme={{ roundness: 10, colors: { primary: "#5D3FD3" } }}
+          underlineColor="transparent"
+          underlineStyle={{ backgroundColor: "transparent" }}
+        />
+        <View style={{ height: 30 }}></View>
+        <TouchableOpacity
+          style={{
+            width: 200,
+            alignSelf: "center",
+            backgroundColor: "#5D3FD3",
+            padding: 15,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 5,
+          }}
+          onPress={handleSendNotification}
+        >
+          <Text style={{ color: "white", fontSize: 17, fontWeight: "bold" }}>
+            Send Notification
+          </Text>
+        </TouchableOpacity>
+      </View>
     </TouchableWithoutFeedback>
   );
 }
