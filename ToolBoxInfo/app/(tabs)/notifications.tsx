@@ -5,8 +5,8 @@ import TopLayout from './(topTabs)/_layout'
 
 export default function notifications() {
   return (
-  // <TopLayout/>
-  <></>
+  
+  <><TopLayout/></>
   )
 }
 
