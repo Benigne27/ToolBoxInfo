@@ -39,7 +39,7 @@ export default function TabLayout() {
         name="(topTabs)"
         options={{
           title: "Notifications",
-          tabBarIcon: ({ color, focused }) => (
+          tabBarIcon: ({ color}) => (
             <Icon
               name={"bell-outline"}
               type="material-community"

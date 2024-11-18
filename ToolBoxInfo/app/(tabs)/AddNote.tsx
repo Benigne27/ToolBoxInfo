@@ -15,6 +15,7 @@ import Constants from "expo-constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "react-native";
 import { TextInput } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
@@ -67,6 +68,18 @@ async function registerForPushNotificationsAsync() {
     }
   } else {
     handleRegistrationError("Must use physical device for push notifications");
+  }
+}
+
+export const SaveNote=async(note:object)=>{
+  try {
+    const oldNotes= await AsyncStorage.getItem('allNotes')
+    const notes= oldNotes? JSON.parse(oldNotes):[]
+    notes.push(note)
+    
+  } catch (error) {
+    console.error('Error found: ', error);
+    
   }
 }
 

@@ -9,7 +9,15 @@ const Top = createMaterialTopTabNavigator();
 
 export default function TopLayout() {
   return (
-    <Top.Navigator>
+    <Top.Navigator
+    keyboardDismissMode="auto"
+    tabBarPosition="top"
+    screenOptions={{
+      swipeEnabled:true,
+      tabBarStyle:{
+        backgroundColor:'gray'
+      }
+    }}>
       <Top.Screen name="newNote" component={newNote}/>
       <Top.Screen name="oldNotes" component={oldNotes} />
     </Top.Navigator>

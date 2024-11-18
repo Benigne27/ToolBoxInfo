@@ -14,6 +14,8 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "react-native-paper";
+import React from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
